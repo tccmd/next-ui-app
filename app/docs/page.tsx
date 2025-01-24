@@ -1,9 +1,19 @@
-import { title } from "@/components/primitives";
+'use client'
 
-export default function DocsPage() {
+import { portfolio } from "@/config/portfolio";
+import { Accordion, AccordionItem } from "@nextui-org/accordion";
+
+export default function DocsPage():React.ReactElement {
   return (
     <div>
-      <h1 className={title()}>Docs</h1>
+
+      <Accordion defaultExpandedKeys={["estimate"]}>
+        {Object.entries(portfolio).map(([key, value], idx) => (
+          <AccordionItem key={key} aria-label={key} title={key} subtitle={value.subtitle}>
+            {value.description}
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 }
